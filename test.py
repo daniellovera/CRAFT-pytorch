@@ -101,7 +101,8 @@ def test_net(net, image, text_threshold, link_threshold, low_text, cuda, poly, r
     # remove y and feature from device, whether GPU or CPU
     del y, feature
     # empty cuda cache to allow nvidia-smi to be more accurate
-    torch.cuda.empty_cache()
+    if cuda:
+        torch.cuda.empty_cache()
     
     t0 = time.time() - t0
     t1 = time.time()
